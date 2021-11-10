@@ -60,7 +60,7 @@ class Room {
   getEnemyByName(name) {
 
     // Fill this in
-
+  }
 }
 
 module.exports = {
