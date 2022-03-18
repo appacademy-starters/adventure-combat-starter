@@ -60,6 +60,7 @@ class Room {
   getEnemyByName(name) {
 
     // Fill this in
+  }
 
 }
 
