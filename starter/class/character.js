@@ -1,7 +1,9 @@
 class Character {
 
   constructor(name, description, currentRoom) {
-    // Fill this in
+    this.name = name;
+    this.description = description;
+    this.currentRoom = currentRoom;
 
   }
 
