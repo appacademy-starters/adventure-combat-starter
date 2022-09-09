@@ -1,6 +1,7 @@
 const {Character} = require('./character');
 const {Enemy} = require('./enemy');
 const {Food} = require('./food');
+const { Items } = require('./item');
 
 class Player extends Character {
   constructor(name, startingRoom) {
@@ -69,7 +70,7 @@ class Player extends Character {
     if (!enemy){
       console.log("You cant hit that!");
     } else {
-      enemy.apllyDamage(this.strength);
+      enemy.applyDamage(this.strength);
       console.log(`${enemy.name} hit for ${this.strength} damage`);
       enemy.setPlayer(this)
     }

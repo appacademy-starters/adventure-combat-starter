@@ -60,7 +60,9 @@ class Room {
     let thisEnemy;
     let enemies = this.getEnemies();
     enemies.forEach(enemy => {
-      if (enemy.name === name) thisEnemy = enemy;
+      if (enemy.name === name) {
+        thisEnemy = enemy;
+      }
     })
     return thisEnemy;
   }

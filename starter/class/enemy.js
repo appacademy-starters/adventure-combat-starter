@@ -1,12 +1,12 @@
 const {Character} = require('./character');
-const {World} = require('./world');
-const {player} = require('./player')
+const {Player} = require('./player')
 
 
 class Enemy extends Character {
   constructor(name, description, currentRoom) {
     super(name, description, currentRoom);
     this.coolDown = 3000;
+    this.items = [];
     this.attackTarget = null;
   }
 
@@ -33,11 +33,11 @@ class Enemy extends Character {
   }
 
   rest() {
-    const resetCooldown = function() {
-      this.cooldown = 0;
+    let resetCooldown = function() {
+      this.coolDown = 0;
       this.act();
     };
-    setTimeout(resetCooldown, this.cooldown);
+    setTimeout(resetCooldown, this.coolDown);
   }
 
   attack() {
@@ -54,19 +54,17 @@ class Enemy extends Character {
   applyDamage(amount) {
     this.health -= amount;
     if (this.health <= 0){
-      this.die(); 
+      this.die();
     } else {
       this.attackTarget = this.player;
       this.act();
     }
   }
 
-
-
   act() {
     let randomNum = Math.floor(Math.random() * 5);
-    if (this.health <= 0) {
-    } else if (this.cooldown > 0) {
+    if (this.health <= 0 || (this.player && this.player.currentRoom != this.currentRoom)) {
+    } else if (this.coolDown > 0) {
       this.rest();
     } else if (this.attackTarget){
       this.attack();
@@ -83,7 +81,7 @@ class Enemy extends Character {
   }
 
   scratchNose() {
-    this.cooldown += 1000;
+    this.coolDown += 1000;
 
     this.alert(`${this.name} scratches its nose`);
 
