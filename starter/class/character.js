@@ -1,5 +1,4 @@
 class Character {
-
   constructor(name, description, currentRoom) {
     this.name = name;
     this.description = description;
@@ -17,14 +16,12 @@ class Character {
   }
 
   die() {
-    // Fill this in
     console.log("You died!")
     for (const item in this.items) {
       this.currentRoom.addItem(this.removeItem(item));
     }
     this.currentRoom = null;
   }
-
 }
 
 module.exports = {

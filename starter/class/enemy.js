@@ -14,9 +14,7 @@ class Enemy extends Character {
     this.player = player;
   }
 
-
   randomMove() {
-    // Fill this in
     const directions = ['n', 'e', 's', 'w'];
     for (let dir in directions){
       let room = this.currentRoom.exits[dir];
@@ -28,7 +26,6 @@ class Enemy extends Character {
     } 
   }
 
-  // Print the alert only if player is standing in the same room
   alert(message) {
     if (this.player && this.player.currentRoom === this.currentRoom) {
       console.log(message);
@@ -36,7 +33,6 @@ class Enemy extends Character {
   }
 
   rest() {
-    // Wait until cooldown expires, then act
     const resetCooldown = function() {
       this.cooldown = 0;
       this.act();
@@ -45,7 +41,6 @@ class Enemy extends Character {
   }
 
   attack() {
-    // Fill this in
     if (this.attackTarget === null){
       return null;
     }
@@ -57,7 +52,6 @@ class Enemy extends Character {
   }
 
   applyDamage(amount) {
-    // Fill this in
     this.health -= amount;
     if (this.health <= 0){
       this.die(); 
@@ -70,11 +64,8 @@ class Enemy extends Character {
 
 
   act() {
-    // Fill this in
     let randomNum = Math.floor(Math.random() * 5);
-
     if (this.health <= 0) {
-      // Dead, do nothing;
     } else if (this.cooldown > 0) {
       this.rest();
     } else if (this.attackTarget){
@@ -91,15 +82,12 @@ class Enemy extends Character {
     }
   }
 
-
   scratchNose() {
     this.cooldown += 1000;
 
     this.alert(`${this.name} scratches its nose`);
 
   }
-
-
 }
 
 module.exports = {

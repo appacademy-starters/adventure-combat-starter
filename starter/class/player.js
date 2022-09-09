@@ -3,16 +3,12 @@ const {Enemy} = require('./enemy');
 const {Food} = require('./food');
 
 class Player extends Character {
-
   constructor(name, startingRoom) {
     super(name, "main character", startingRoom);
   }
 
   move(direction) {
-
     const nextRoom = this.currentRoom.getRoomInDirection(direction);
-
-    // If the next room is valid, set the player to be in that room
     if (nextRoom) {
       this.currentRoom = nextRoom;
 
@@ -39,8 +35,6 @@ class Player extends Character {
         this.items.push(item);
         console.log(`${item.name} added to inventory`);
     }
-    // Fill this in
-
   }
 
   dropItem(itemName) {
@@ -49,8 +43,6 @@ class Player extends Character {
             this.currentRoom.items.push(item);
             console.log(`${item.name} dropped`)
         }
-    // Fill this in
-
   }
 
   eatItem(itemName) {
@@ -61,9 +53,6 @@ class Player extends Character {
             console.log(`You cant eat that`)
             this.items.push(item)
         }
-
-    // Fill this in
-
   }
 
   getItemByName(name) {
@@ -72,9 +61,7 @@ class Player extends Character {
       if (itemName.name.includes(name)){
           return (this.items.splice(i, 1)[0]);
       }
-  }
-    // Fill this in
-
+    }
   }
 
   hit(name) {
@@ -86,8 +73,6 @@ class Player extends Character {
       console.log(`${enemy.name} hit for ${this.strength} damage`);
       enemy.setPlayer(this)
     }
-    // Fill this in
-
   }
 
   die() {

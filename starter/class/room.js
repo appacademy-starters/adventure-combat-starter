@@ -38,12 +38,9 @@ class Room {
   }
 
   connectRooms(direction, connectingRoom) {
-
-    // Check if the direction and connecting room are valid
     if (['n', 's', 'e', 'w'].indexOf(direction) < 0 || !connectingRoom) {
       throw new Error("Error: Invalid room connection");
     }
-
     this.exits[direction] = connectingRoom;
   }
 
@@ -57,8 +54,6 @@ class Room {
       if (item.name == name) thisItem = this.items.splice(index, 1)[0];
     });
     return thisItem;
-    // Fill this in
-
   }
 
   getEnemyByName(name) {
@@ -68,7 +63,6 @@ class Room {
       if (enemy.name === name) thisEnemy = enemy;
     })
     return thisEnemy;
-    // Fill this in
   }
   
   addItem(item) {

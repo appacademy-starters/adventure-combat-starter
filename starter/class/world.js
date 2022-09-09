@@ -34,8 +34,6 @@ class World {
     const itemList = worldData.items;
     const enemyList = worldData.enemies;
 
-    // Instantiate new room objects
-    // Get name, id and description from room data
     for (let i = 0 ; i < roomList.length ; i++) {
 
         let roomData = roomList[i];
@@ -44,8 +42,6 @@ class World {
         World.rooms[roomData.id] = newRoom;
     }
 
-    // Connect rooms by ID
-    // Note that all rooms must be created before they can be connected
     for (let i = 0 ; i < roomList.length ; i++) {
 
       let roomID = roomList[i].id;
@@ -59,7 +55,6 @@ class World {
 
     }
 
-    // Instantiate items
     for (let i = 0 ; i < itemList.length ; i++) {
 
       let itemData = itemList[i];
@@ -75,15 +70,12 @@ class World {
       itemRoom.items.push(newItem);
    }
 
-    // Instantiate enemies
     for (let i = 0 ; i < enemyList.length ; i++) {
-
       let enemyData = enemyList[i];
       let enemyRoom = World.rooms[enemyData.room];
       let newEnemy = new Enemy(enemyData.name, enemyData.description, enemyRoom);
       World.enemies.push(newEnemy);
     }
-
   }
 }
 
