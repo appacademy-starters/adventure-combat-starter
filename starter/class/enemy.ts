@@ -1,7 +1,9 @@
 import { Character } from "./character";
 
 class Enemy extends Character {
-  constructor(name, description, currentRoom) {
+  public health: number;
+  
+  constructor(public name: string, public description: string, public currentRoom: number) {
     super(name, description, currentRoom, health, strength);
     this.cooldown = 3000;
   }

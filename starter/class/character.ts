@@ -1,10 +1,7 @@
 class Character {
-  constructor(name: string, description: string, currentRoom: number) {
-    this.name = name;
-    this.description = description;
-    this.currentRoom = currentRoom;
-    this.health = 100;
-    this.strength = 10;
+  public health = 100;
+  public strength = 10;
+  constructor(public name: string, public description: string, public currentRoom: number | null) {
   }
 
   applyDamage(amount: number) {
@@ -16,4 +13,4 @@ class Character {
   }
 }
 
-export from { Character };
+export { Character };
