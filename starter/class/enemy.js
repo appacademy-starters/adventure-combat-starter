@@ -1,18 +1,17 @@
-const {Character} = require('./character');
-
+const { Character } = require("./character");
 
 class Enemy extends Character {
   constructor(name, description, currentRoom) {
-    // Fill this in
+    super(name, description, currentRoom, health, strength);
+    this.cooldown = 3000;
   }
 
   setPlayer(player) {
     this.player = player;
   }
 
-
   randomMove() {
-    // Fill this in
+    this.cooldown = 0;
   }
 
   takeSandwich() {
@@ -28,7 +27,7 @@ class Enemy extends Character {
 
   rest() {
     // Wait until cooldown expires, then act
-    const resetCooldown = function() {
+    const resetCooldown = function () {
       this.cooldown = 0;
       this.act();
     };
@@ -43,8 +42,6 @@ class Enemy extends Character {
     // Fill this in
   }
 
-
-
   act() {
     if (this.health <= 0) {
       // Dead, do nothing;
@@ -58,15 +55,11 @@ class Enemy extends Character {
     // Fill this in
   }
 
-
   scratchNose() {
     this.cooldown += 1000;
 
     this.alert(`${this.name} scratches its nose`);
-
   }
-
-
 }
 
 module.exports = {
