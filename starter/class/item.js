@@ -1,10 +1,8 @@
 class Item {
-  constructor(name, description) {
+  constructor(name: string, description: string) {
     this.name = name;
     this.description = description;
   }
 }
 
-module.exports = {
-  Item,
-};
+export  { Item };

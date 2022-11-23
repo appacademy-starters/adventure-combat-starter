@@ -1,5 +1,5 @@
 class Character {
-  constructor(name, description, currentRoom) {
+  constructor(name: string, description: string, currentRoom: number) {
     this.name = name;
     this.description = description;
     this.currentRoom = currentRoom;
@@ -7,7 +7,7 @@ class Character {
     this.strength = 10;
   }
 
-  applyDamage(amount) {
+  applyDamage(amount: number) {
     this.health -= amount;
   }
 
