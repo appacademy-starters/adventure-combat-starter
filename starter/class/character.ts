@@ -16,6 +16,4 @@ class Character {
   }
 }
 
-module.exports = {
-  Character,
-};
+export from { Character };
