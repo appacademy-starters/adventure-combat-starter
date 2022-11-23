@@ -1,9 +1,9 @@
-const { Character } = require("./character");
-const { Enemy } = require("./enemy");
-const { Food } = require("./food");
+import { Character } from "./character";
+import { Enemy } from "./enemy";
+import { Food } from "./food";
 //const { Item } = require("./item.js");
 //const { Room } = require("./room.js");
-const { newArrWithoutItem } = require("./array-utilities.js");
+import { newArrWithoutItem } from "./array-utilities.js";
 
 class Player extends Character {
   constructor(name, startingRoom) {
@@ -96,6 +96,4 @@ class Player extends Character {
   }
 }
 
-module.exports = {
-  Player,
-};
+export { Player };

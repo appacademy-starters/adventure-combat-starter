@@ -1,4 +1,4 @@
-const { Item } = require("./item");
+import { Item } from "./item";
 
 class Food extends Item {
   constructor(name, description) {
@@ -6,4 +6,4 @@ class Food extends Item {
   }
 }
 
-module.export { Food };
+export { Food };

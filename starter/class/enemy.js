@@ -1,4 +1,4 @@
-const { Character } = require("./character");
+import { Character } from "./character";
 
 class Enemy extends Character {
   constructor(name, description, currentRoom) {
@@ -62,6 +62,4 @@ class Enemy extends Character {
   }
 }
 
-module.exports = {
-  Enemy,
-};
+export { Enemy };
