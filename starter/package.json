@@ -7,12 +7,18 @@
     "test": "test"
   },
   "scripts": {
+    "start": "node ./build/game.js",
+    "start:dev": "ts-node ./game.ts",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
     "test": "mocha"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^10.1.0"
+    "mocha": "^10.1.0",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.1"
   }
 }
