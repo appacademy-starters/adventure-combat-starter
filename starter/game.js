@@ -36,8 +36,8 @@ function startGame() {
     console.log(`Hello, ${name}!\n`);
 
     // Create the world and player
-    World.loadWorld(worldData, player);
-    player = new Player(name, World.rooms[1]);
+    World.loadWorld(worldData); //previously also had a second parameter player, needed?
+    player = new Player(name, "main character", World.rooms[1]);
     World.setPlayer(player);
 
     // Show commands

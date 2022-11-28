@@ -1,13 +1,13 @@
+import { World } from './world';
+import { Item } from "./item.js";
+
 class Room {
-  constructor(name, description) {
-    this.name = name;
-    this.description = description;
-    this.exits = {};
-    this.items = [];
+  public exits: Record<string, number>  = {}; //exit is an object with key: string value: num 
+  public items: Item[] = [];
+  constructor(public name: string, public description: string) {
   }
 
   getEnemies() {
-    const { World } = require("./world");
     return World.getEnemiesInRoom(this);
   }
 
@@ -40,7 +40,7 @@ class Room {
     return `Exits: ${this.getExits().join(", ")}`;
   }
 
-  connectRooms(direction, connectingRoom) {
+  connectRooms(direction: string, connectingRoom: Room) {
     // Check if the direction and connecting room are valid
     if (["n", "s", "e", "w"].indexOf(direction) < 0 || !connectingRoom) {
       throw new Error("Error: Invalid room connection");
@@ -49,15 +49,15 @@ class Room {
     this.exits[direction] = connectingRoom;
   }
 
-  getRoomInDirection(direction) {
+  getRoomInDirection(direction: string) {
     return this.exits[direction];
   }
 
-  getItemByName(name) {
+  getItemByName(name: string) {
     // Fill this in
   }
 
-  getEnemyByName(name) {
+  getEnemyByName(name: string) {
     // Fill this in
   }
 }

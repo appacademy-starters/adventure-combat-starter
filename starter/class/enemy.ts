@@ -1,19 +1,23 @@
 import { Character } from "./character";
+import { Player } from "./player";
+import { Room } from "./room.js";
 
 class Enemy extends Character {
-  public health: number;
-  
-  constructor(public name: string, public description: string, public currentRoom: number) {
-    super(name, description, currentRoom, health, strength);
-    this.cooldown = 3000;
+  public cooldown = 3000;
+  public player: Player;
+  constructor(name: string, 
+              description: string, 
+              currentRoom: Room
+              ) {
+    super(name, description, currentRoom); //health and strength should autmatically be inherited?
   }
 
-  setPlayer(player) {
+  setPlayer(player: Player) { 
     this.player = player;
   }
 
   randomMove() {
-    this.cooldown = 0;
+    
   }
 
   takeSandwich() {
@@ -21,7 +25,7 @@ class Enemy extends Character {
   }
 
   // Print the alert only if player is standing in the same room
-  alert(message) {
+  alert(message: string) {
     if (this.player && this.player.currentRoom === this.currentRoom) {
       console.log(message);
     }
@@ -29,7 +33,7 @@ class Enemy extends Character {
 
   rest() {
     // Wait until cooldown expires, then act
-    const resetCooldown = function () {
+    const resetCooldown = () => {
       this.cooldown = 0;
       this.act();
     };
@@ -40,7 +44,7 @@ class Enemy extends Character {
     // Fill this in
   }
 
-  applyDamage(amount) {
+  override applyDamage(amount: number) {
     // Fill this in
   }
 
@@ -57,7 +61,7 @@ class Enemy extends Character {
     // Fill this in
   }
 
-  scratchNose() {
+  scratchNose(): void {
     this.cooldown += 1000;
 
     this.alert(`${this.name} scratches its nose`);

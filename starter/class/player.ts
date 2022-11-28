@@ -1,19 +1,22 @@
 import { Character } from "./character";
 import { Enemy } from "./enemy";
 import { Food } from "./food";
-//const { Item } = require("./item.js");
-//const { Room } = require("./room.js");
+import { Item } from "./item.js";
+import { Room } from "./room.js";
 import { newArrWithoutItem } from "./array-utilities.js";
 
 class Player extends Character {
-  constructor(name, startingRoom) {
-    super(name, "main character", startingRoom, health, strength);
-    this.items = [];
+  public items: Item[] = [];
+  constructor(name: string, 
+              description: string, 
+              currentRoom: Room) {
+    super(name, description, currentRoom);
   }
 
-  move(direction) {
+  move(direction: string) {
+    if (this.currentRoom) {
     const nextRoom = this.currentRoom.getRoomInDirection(direction);
-
+  
     // If the next room is valid, set the player to be in that room
     if (nextRoom) {
       this.currentRoom = nextRoom;
@@ -22,6 +25,7 @@ class Player extends Character {
     } else {
       console.log("You cannot move in that direction");
     }
+  }
   }
 
   printInventory() {
@@ -35,7 +39,8 @@ class Player extends Character {
     }
   }
 
-  takeItem(itemName) {
+  takeItem(itemName: string) {
+    if (this.currentRoom) {
     let itemObj = this.currentRoom.getItemByName(itemName);
     if (itemObj) {
       //item exists in this current room
@@ -52,20 +57,23 @@ class Player extends Character {
       );
     }
   }
+  }
 
-  dropItem(itemName) {
-    let dropItem = this.getItemByName(itemName);
+  dropItem(itemName: string) {
+    if (this.currentRoom) {
+      let dropItem = this.getItemByName(itemName);
     if (dropItem) {
       this.items = newArrWithoutItem(this.items, dropItem);
       this.currentRoom.items.push(dropItem);
       console.log(`You have left ${itemName} at ${this.currentRoom.name}.`);
     }
   }
+  }
 
-  eatItem(itemName) {
+  eatItem(itemName: string) {
     let foodObj = this.getItemByName(itemName);
     if (foodObj) {
-      if (foodObj.isFood) {
+      if (foodObj instanceof Food) {
         //set items to a new array with that item removed
         this.items = newArrWithoutItem(this.items, foodObj);
         console.log(`You ate the ${itemName}`);
@@ -75,7 +83,7 @@ class Player extends Character {
     }
   }
 
-  getItemByName(itemName) {
+  getItemByName(itemName: string) {
     let itemFromInv = this.items.find((el) => el.name === itemName);
     if (itemFromInv) {
       return itemFromInv;
@@ -84,14 +92,15 @@ class Player extends Character {
     }
   }
 
-  hit(name) {
+  hit(name: string) {
     // Fill this in
   }
 
-  die() {
+  override die() {
     super.die();
-
-    this.items.console.log("You are dead!");
+    //drop all items
+    //this.items.
+    console.log("You are dead!");
     process.exit();
   }
 }

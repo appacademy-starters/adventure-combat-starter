@@ -2,12 +2,14 @@ import { Room } from "./room";
 import { Item } from "./item";
 import { Food } from "./food";
 import { Enemy } from "./enemy";
+import { Player } from "./player";
 
 class World {
-  static rooms = {};
-  static enemies = [];
-
-  static setPlayer(player) {
+  // 
+  static rooms: Record<string, Room>  = {}; 
+  static enemies:  Enemy[] = [];
+  
+  static setPlayer(player: Player) {
     for (let i = 0; i < World.enemies.length; i++) {
       if (World.enemies[i]) {
         World.enemies[i].setPlayer(player);
@@ -23,11 +25,16 @@ class World {
     }
   }
 
-  static getEnemiesInRoom(room) {
+  static getEnemiesInRoom(room: Room) {
     return World.enemies.filter((enemy) => enemy.currentRoom === room);
   }
 
-  static loadWorld(worldData) {
+  static loadWorld(worldData:  ) {
+    // here are the keys of the object
+    // this one is heterogenous and finite so you're not using a record
+    // as in, there are three keys, and we know the types of their values
+    // if you don't want to bother typing it, you can also just make it `any` and I won't judge you, I swear *gasp*
+    //but actually I'm not sure what it would look like to type that out (not any)
     const roomList = worldData.rooms;
     const itemList = worldData.items;
     const enemyList = worldData.enemies;
@@ -38,7 +45,7 @@ class World {
       let roomData = roomList[i];
       let newRoom = new Room(roomData.name, roomData.description);
 
-      World.rooms[roomData.id] = newRoom;
+      World.rooms[roomData.id] = newRoom; 
     }
 
     // Connect rooms by ID
@@ -57,7 +64,7 @@ class World {
     // Instantiate items
     for (let i = 0; i < itemList.length; i++) {
       let itemData = itemList[i];
-      let newItem;
+      let newItem: Item;
 
       if (itemData.isFood) {
         newItem = new Food(itemData.name, itemData.description);
@@ -72,7 +79,7 @@ class World {
     // Instantiate enemies
     for (let i = 0; i < enemyList.length; i++) {
       let enemyData = enemyList[i];
-      let enemyRoom = World.rooms[enemyData.room];
+      let enemyRoom = World.rooms[enemyData.currentRoom];
       let newEnemy = new Enemy(
         enemyData.name,
         enemyData.description,
