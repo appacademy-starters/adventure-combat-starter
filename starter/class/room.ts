@@ -1,8 +1,9 @@
 import { World } from './world';
 import { Item } from "./item.js";
+import { Player } from './player';
 
 class Room {
-  public exits: Record<string, number>  = {}; //exit is an object with key: string value: num 
+  public exits: Record<string, number>  = {}; ///exit is an object with string keys and num values 
   public items: Item[] = [];
   constructor(public name: string, public description: string) {
   }
@@ -40,7 +41,7 @@ class Room {
     return `Exits: ${this.getExits().join(", ")}`;
   }
 
-  connectRooms(direction: string, connectingRoom: Room) {
+  connectRooms(direction: string, connectingRoom: number) {
     // Check if the direction and connecting room are valid
     if (["n", "s", "e", "w"].indexOf(direction) < 0 || !connectingRoom) {
       throw new Error("Error: Invalid room connection");
@@ -50,11 +51,16 @@ class Room {
   }
 
   getRoomInDirection(direction: string) {
-    return this.exits[direction];
+    return this.exits[direction]; //change this to return Room object?
   }
 
-  getItemByName(name: string) {
-    // Fill this in
+  getItemByNameRoom(itemName: string) {
+    let returnItem = this.items.find((obj) => obj.name === itemName);
+    if (returnItem) { // if items arr contains obj ItemName
+      return returnItem; //return that Item obj
+    } else {
+      console.log(`This room does not contain ${itemName}. Try looking elsewhere.`);
+  }
   }
 
   getEnemyByName(name: string) {

@@ -5,8 +5,7 @@ import { Enemy } from "./enemy";
 import { Player } from "./player";
 
 class World {
-  // 
-  static rooms: Record<string, Room>  = {}; 
+  static rooms: Record<number, Room> = {};
   static enemies:  Enemy[] = [];
   
   static setPlayer(player: Player) {
@@ -29,13 +28,17 @@ class World {
     return World.enemies.filter((enemy) => enemy.currentRoom === room);
   }
 
-  static loadWorld(worldData:  ) {
-    // here are the keys of the object
-    // this one is heterogenous and finite so you're not using a record
-    // as in, there are three keys, and we know the types of their values
-    // if you don't want to bother typing it, you can also just make it `any` and I won't judge you, I swear *gasp*
-    //but actually I'm not sure what it would look like to type that out (not any)
-    const roomList = worldData.rooms;
+  static loadWorld(worldData: any) {
+    /* instead of "any" make file world-data-types.ts -> create interfaces that describe these types, e.g. 
+     enemies: {
+      name: string;
+      description: string;
+      room: number;
+  } 
+  and use these new interfaces as the type for worldData
+  */
+    
+    const roomList = worldData.rooms; //array of room objects with id, name, description, exits
     const itemList = worldData.items;
     const enemyList = worldData.enemies;
 

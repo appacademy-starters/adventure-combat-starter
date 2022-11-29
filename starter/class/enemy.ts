@@ -4,7 +4,7 @@ import { Room } from "./room.js";
 
 class Enemy extends Character {
   public cooldown = 3000;
-  public player: Player;
+  public player?: Player ;
   constructor(name: string, 
               description: string, 
               currentRoom: Room
@@ -15,9 +15,10 @@ class Enemy extends Character {
   setPlayer(player: Player) { 
     this.player = player;
   }
+  
 
   randomMove() {
-    
+    let currentRoomExits = this.currentRoom?.getExits();
   }
 
   takeSandwich() {

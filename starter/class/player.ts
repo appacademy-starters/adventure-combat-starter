@@ -1,27 +1,27 @@
 import { Character } from "./character";
 import { Enemy } from "./enemy";
 import { Food } from "./food";
-import { Item } from "./item.js";
-import { Room } from "./room.js";
+import { Item } from "./item";
+import { Room } from "./room";
 import { newArrWithoutItem } from "./array-utilities.js";
+import { World } from './world';
 
 class Player extends Character {
   public items: Item[] = [];
-  constructor(name: string, 
-              description: string, 
-              currentRoom: Room) {
-    super(name, description, currentRoom);
-  }
+  constructor(name: string, startingRoom: Room) {
+    super(name, "main character", startingRoom);
+  } 
+  
 
   move(direction: string) {
     if (this.currentRoom) {
+    //assigns nextRoom to a number (or falsey?)
     const nextRoom = this.currentRoom.getRoomInDirection(direction);
-  
     // If the next room is valid, set the player to be in that room
-    if (nextRoom) {
-      this.currentRoom = nextRoom;
-
-      nextRoom.printRoom(this);
+    if (nextRoom) { //if nextRoom wasn't assigned a falsey value above
+      this.currentRoom = World.rooms[nextRoom];
+      
+      this.currentRoom.printRoom();
     } else {
       console.log("You cannot move in that direction");
     }
@@ -40,10 +40,10 @@ class Player extends Character {
   }
 
   takeItem(itemName: string) {
-    if (this.currentRoom) {
-    let itemObj = this.currentRoom.getItemByName(itemName);
+    if (this.currentRoom) { // if currentRoom is not null
+    let itemObj = this.currentRoom.getItemByNameRoom(itemName);
     if (itemObj) {
-      //item exists in this current room
+      //if item exists in this current room
       this.currentRoom.items = newArrWithoutItem(
         this.currentRoom.items,
         itemObj
@@ -60,18 +60,16 @@ class Player extends Character {
   }
 
   dropItem(itemName: string) {
-    if (this.currentRoom) {
-      let dropItem = this.getItemByName(itemName);
+      let dropItem = this.getItemByNamePlayer(itemName);
     if (dropItem) {
       this.items = newArrWithoutItem(this.items, dropItem);
-      this.currentRoom.items.push(dropItem);
-      console.log(`You have left ${itemName} at ${this.currentRoom.name}.`);
+      this.currentRoom?.items.push(dropItem);
+      console.log(`You have left ${itemName} at ${this.currentRoom?.name}.`);
     }
-  }
   }
 
   eatItem(itemName: string) {
-    let foodObj = this.getItemByName(itemName);
+    let foodObj = this.getItemByNamePlayer(itemName);
     if (foodObj) {
       if (foodObj instanceof Food) {
         //set items to a new array with that item removed
@@ -83,7 +81,7 @@ class Player extends Character {
     }
   }
 
-  getItemByName(itemName: string) {
+  getItemByNamePlayer(itemName: string) {
     let itemFromInv = this.items.find((el) => el.name === itemName);
     if (itemFromInv) {
       return itemFromInv;

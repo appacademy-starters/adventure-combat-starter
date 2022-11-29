@@ -13,7 +13,7 @@ class Character {
   }
 
   die() {
-    this.currentRoom = null;
+    this.currentRoom = null; 
   }
 }
 
