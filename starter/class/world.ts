@@ -29,7 +29,7 @@ class World {
   }
 
   static loadWorld(worldData: any) {
-    /* instead of "any" make file world-data-types.ts -> create interfaces that describe these types, e.g. 
+    /* instead of "any", make file world-data-types.ts -> create interfaces that describe these types, e.g. 
      enemies: {
       name: string;
       description: string;
@@ -56,11 +56,13 @@ class World {
     for (let i = 0; i < roomList.length; i++) {
       let roomID = roomList[i].id;
       let roomConnections = roomList[i].exits;
+      //roomConnections is an object that looks like this: 
+      //{ n: 2, e: 3, w: 4, s: 5 }
 
       for (const direction in roomConnections) {
-        let connectedRoomID = roomConnections[direction];
-        let roomToConnect = World.rooms[connectedRoomID];
-        World.rooms[roomID].connectRooms(direction, roomToConnect);
+        let connectedRoomID: number = roomConnections[direction];
+        //let roomToConnect: Room = World.rooms[connectedRoomID]; //unnecessary now?
+        World.rooms[roomID].connectRooms(direction, connectedRoomID);
       }
     }
 
