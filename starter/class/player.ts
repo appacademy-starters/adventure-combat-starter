@@ -91,13 +91,16 @@ class Player extends Character {
   }
 
   hit(name: string) {
-    // Fill this in
+    //how to reference the enemy obj by name?
+    let enemyTarget = this.currentRoom?.getEnemies().find((enemy: Enemy) => enemy.name === name);
+    if (enemyTarget) {
+        //if name refers to an enemy in player's current room
+        enemyTarget.applyDamage(10);
+    }
   }
 
   override die() {
     super.die();
-    //drop all items
-    //this.items.
     console.log("You are dead!");
     process.exit();
   }

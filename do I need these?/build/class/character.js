@@ -8,17 +8,11 @@ class Character {
         this.currentRoom = currentRoom;
         this.health = 100;
         this.strength = 10;
-        this.items = [];
     }
     applyDamage(amount) {
         this.health -= amount;
     }
     die() {
-        //drop all held items
-        if (this.items.length > 0 && this.currentRoom) {
-            this.currentRoom.items = this.items;
-            this.items = []; //make sure this is actually ok
-        }
         this.currentRoom = null;
     }
 }

@@ -1,6 +1,7 @@
 import { Character } from "./character";
 import { Player } from "./player";
 import { Room } from "./room.js";
+import { World } from './world';
 
 class Enemy extends Character {
   public cooldown = 3000;
@@ -18,7 +19,15 @@ class Enemy extends Character {
   
 
   randomMove() {
+    //Implement the ability for the goblin to move 
+    //to a different room on a cooldown timer
     let currentRoomExits = this.currentRoom?.getExits();
+    if (currentRoomExits && this.currentRoom) {
+      let randomExit: number = Math.floor(Math.random() * currentRoomExits.length);
+      let nextRoom = this.currentRoom.getRoomInDirection(currentRoomExits[randomExit]);
+      this.currentRoom = World.rooms[nextRoom];
+    }
+    this.cooldown += 3000;
   }
 
   takeSandwich() {
@@ -34,6 +43,8 @@ class Enemy extends Character {
 
   rest() {
     // Wait until cooldown expires, then act
+    //Take a look at the Enemy.rest() setTimeout loop. 
+    //^There is a bug in this code. Can you find it?
     const resetCooldown = () => {
       this.cooldown = 0;
       this.act();
@@ -42,7 +53,10 @@ class Enemy extends Character {
   }
 
   attack() {
-    // Fill this in
+    // Implement the ability for the goblin to attack the player 
+    // back after being hit once
+    //The goblin should attack the player on sight once hit - immediately?
+
   }
 
   override applyDamage(amount: number) {
@@ -56,6 +70,7 @@ class Enemy extends Character {
       this.rest();
     } else {
       this.scratchNose();
+      //add randomMove here??
       this.rest();
     }
 

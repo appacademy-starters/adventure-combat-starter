@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Room = void 0;
 const world_1 = require("./world");
+const player_1 = require("./player");
 class Room {
     constructor(name, description) {
         this.name = name;
@@ -46,13 +47,12 @@ class Room {
     getRoomInDirection(direction) {
         return this.exits[direction]; //change this to return Room object?
     }
-    getItemByNameRoom(itemName) {
-        let returnItem = this.items.find((obj) => obj.name === itemName);
-        if (returnItem) { // if items arr contains obj ItemName
-            return returnItem; //return that Item obj
+    getItemByName(name) {
+        if (this.items.indexOf(name) > -1) {
+            player_1.Player.takeItem(name);
         }
         else {
-            console.log(`This room does not contain ${itemName}. Try looking elsewhere.`);
+            console.log(`This room does not contain ${name}. Try looking elsewhere.`);
         }
     }
     getEnemyByName(name) {

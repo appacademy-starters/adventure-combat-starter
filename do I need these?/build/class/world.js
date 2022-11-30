@@ -24,14 +24,7 @@ class World {
         return World.enemies.filter((enemy) => enemy.currentRoom === room);
     }
     static loadWorld(worldData) {
-        /* instead of "any", make file world-data-types.ts -> create interfaces that describe these types, e.g.
-         enemies: {
-          name: string;
-          description: string;
-          room: number;
-      }
-      and use these new interfaces as the type for worldData
-      */
+        //world-data-types.ts -> interfaces that describe these types
         const roomList = worldData.rooms; //array of room objects with id, name, description, exits
         const itemList = worldData.items;
         const enemyList = worldData.enemies;
@@ -41,18 +34,17 @@ class World {
             let roomData = roomList[i];
             let newRoom = new room_1.Room(roomData.name, roomData.description);
             World.rooms[roomData.id] = newRoom;
+            //I'm not just going back to player where nextRoom is still num
         }
         // Connect rooms by ID
         // Note that all rooms must be created before they can be connected
         for (let i = 0; i < roomList.length; i++) {
             let roomID = roomList[i].id;
             let roomConnections = roomList[i].exits;
-            //roomConnections is an object that looks like this: 
-            //{ n: 2, e: 3, w: 4, s: 5 }
             for (const direction in roomConnections) {
                 let connectedRoomID = roomConnections[direction];
-                //let roomToConnect: Room = World.rooms[connectedRoomID]; //unnecessary now?
-                World.rooms[roomID].connectRooms(direction, connectedRoomID);
+                let roomToConnect = World.rooms[connectedRoomID];
+                World.rooms[roomID].connectRooms(direction, roomToConnect);
             }
         }
         // Instantiate items
