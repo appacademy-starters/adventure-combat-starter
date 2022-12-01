@@ -1,31 +1,29 @@
 import { Character } from "./character";
 import { Enemy } from "./enemy";
 import { Food } from "./food";
-import { Item } from "./item";
 import { Room } from "./room";
 import { newArrWithoutItem } from "./array-utilities.js";
-import { World } from './world';
+import { World } from "./world";
 
 class Player extends Character {
-  public items: Item[] = [];
   constructor(name: string, startingRoom: Room) {
     super(name, "main character", startingRoom);
-  } 
-  
+  }
 
   move(direction: string) {
     if (this.currentRoom) {
-    //assigns nextRoom to a number (or falsey?)
-    const nextRoom = this.currentRoom.getRoomInDirection(direction);
-    // If the next room is valid, set the player to be in that room
-    if (nextRoom) { //if nextRoom wasn't assigned a falsey value above
-      this.currentRoom = World.rooms[nextRoom];
-      
-      this.currentRoom.printRoom();
-    } else {
-      console.log("You cannot move in that direction");
+      //assigns nextRoom to a number (or falsey?)
+      const nextRoom = this.currentRoom.getRoomInDirection(direction);
+      // If the next room is valid, set the player to be in that room
+      if (nextRoom) {
+        //if nextRoom wasn't assigned a falsey value above
+        this.currentRoom = World.rooms[nextRoom];
+
+        this.currentRoom.printRoom();
+      } else {
+        console.log("You cannot move in that direction");
+      }
     }
-  }
   }
 
   printInventory() {
@@ -40,27 +38,28 @@ class Player extends Character {
   }
 
   takeItem(itemName: string) {
-    if (this.currentRoom) { // if currentRoom is not null
-    let itemObj = this.currentRoom.getItemByNameRoom(itemName);
-    if (itemObj) {
-      //if item exists in this current room
-      this.currentRoom.items = newArrWithoutItem(
-        this.currentRoom.items,
-        itemObj
-      );
-      //item removed from current room
-      this.items.push(itemObj); //item added to inventory
-      console.log(`You have added ${itemName} to your items.`);
-    } else {
-      console.log(
-        `This room does not contain ${itemName}. Try looking elsewhere.`
-      );
+    if (this.currentRoom) {
+      // if currentRoom is not null
+      let itemObj = this.currentRoom.getItemByNameRoom(itemName);
+      if (itemObj) {
+        //if item exists in this current room
+        this.currentRoom.items = newArrWithoutItem(
+          this.currentRoom.items,
+          itemObj
+        );
+        //item removed from current room
+        this.items.push(itemObj); //item added to inventory
+        console.log(`You have added ${itemName} to your items.`);
+      } else {
+        console.log(
+          `This room does not contain ${itemName}. Try looking elsewhere.`
+        );
+      }
     }
-  }
   }
 
   dropItem(itemName: string) {
-      let dropItem = this.getItemByNamePlayer(itemName);
+    let dropItem = this.getItemByNamePlayer(itemName);
     if (dropItem) {
       this.items = newArrWithoutItem(this.items, dropItem);
       this.currentRoom?.items.push(dropItem);
@@ -92,10 +91,12 @@ class Player extends Character {
 
   hit(name: string) {
     //how to reference the enemy obj by name?
-    let enemyTarget = this.currentRoom?.getEnemies().find((enemy: Enemy) => enemy.name === name);
+    let enemyTarget = this.currentRoom
+      ?.getEnemies()
+      .find((enemy: Enemy) => enemy.name === name);
     if (enemyTarget) {
-        //if name refers to an enemy in player's current room
-        enemyTarget.applyDamage(10);
+      //if name refers to an enemy in player's current room
+      enemyTarget.applyDamage(10);
     }
   }
 

@@ -1,12 +1,10 @@
-import { World } from './world';
+import { World } from "./world";
 import { Item } from "./item.js";
-import { Player } from './player';
 
 class Room {
-  public exits: Record<string, number>  = {}; ///exit is an object with string keys and num values 
+  public exits: Record<string, number> = {}; ///exit is an object with string keys and num values
   public items: Item[] = [];
-  constructor(public name: string, public description: string) {
-  }
+  constructor(public name: string, public description: string) {}
 
   getEnemies() {
     return World.getEnemiesInRoom(this);
@@ -56,11 +54,14 @@ class Room {
 
   getItemByNameRoom(itemName: string) {
     let returnItem = this.items.find((obj) => obj.name === itemName);
-    if (returnItem) { // if items arr contains obj ItemName
+    if (returnItem) {
+      // if items arr contains obj ItemName
       return returnItem; //return that Item obj
     } else {
-      console.log(`This room does not contain ${itemName}. Try looking elsewhere.`);
-  }
+      console.log(
+        `This room does not contain ${itemName}. Try looking elsewhere.`
+      );
+    }
   }
 
   getEnemyByName(name: string) {
