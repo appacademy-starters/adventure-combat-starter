@@ -11,11 +11,13 @@
     "start:dev": "ts-node ./game.ts",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "mocha"
+    "test": "mocha build/test/*.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.9",
     "chai": "^4.3.4",
     "mocha": "^10.1.0",

@@ -1,9 +1,9 @@
-const { expect } = require("chai");
+import { expect } from "chai";
 
-const { Player } = require("../class/player.js");
-const { Room } = require("../class/room.js");
-const { Item } = require("../class/item.js");
-const { Food } = require("../class/food.js");
+import { Player } from "../class/player.js";
+import { Room } from "../class/room.js";
+import { Item } from "../class/item.js";
+import { Food } from "../class/food.js";
 
 describe("Item", function () {
   it("should have name and description attributes", function () {
