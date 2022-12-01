@@ -63,7 +63,7 @@ describe("Enemy", function () {
     expect(enemy.attackTarget).to.equal(player);
   });
 
-  it("should attack the player when targetting player", function () {
+  it("should attack the player when targeting player", function () {
     player.hit("enemy");
 
     enemy.cooldown = 0;
