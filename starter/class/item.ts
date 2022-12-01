@@ -1,6 +1,5 @@
 class Item {
-  constructor(public name: string, public description: string) {
-  }
+  constructor(public name: string, public description: string) {}
 }
 
-export  { Item };
+export { Item };

@@ -1,22 +1,19 @@
-const { expect } = require('chai');
+const { expect } = require("chai");
 
-const {Player} = require("../class/player.js");
-const {Room} = require("../class/room.js");
-const {Item} = require("../class/item.js");
-const {Food} = require("../class/food.js");
+const { Player } = require("../class/player.js");
+const { Room } = require("../class/room.js");
+const { Item } = require("../class/item.js");
+const { Food } = require("../class/food.js");
 
-describe ('Item', function () {
-
-  it('should have name and description attributes', function () {
+describe("Item", function () {
+  it("should have name and description attributes", function () {
     let item = new Item("rock", "just a simple rock");
 
     expect(item.name).to.equal("rock");
     expect(item.description).to.equal("just a simple rock");
-
   });
 
-
-  it('can be retrieved from player inventory by name', function () {
+  it("can be retrieved from player inventory by name", function () {
     let item = new Item("rock", "just a simple rock");
     let room = new Room("Test Room", "A test room");
     let player = new Player("player", room);
@@ -25,10 +22,9 @@ describe ('Item', function () {
     expect(player.items.length).to.equal(1);
 
     expect(player.getItemByName("rock")).to.equal(item);
-
   });
 
-  it('can be retrieved from a room by name', function () {
+  it("can be retrieved from a room by name", function () {
     let item = new Item("rock", "just a simple rock");
     let room = new Room("Test Room", "A test room");
 
@@ -36,10 +32,9 @@ describe ('Item', function () {
     expect(room.items.length).to.equal(1);
 
     expect(room.getItemByName("rock")).to.equal(item);
-
   });
 
-  it('can be picked up from a room by a player', function () {
+  it("can be picked up from a room by a player", function () {
     let item = new Item("rock", "just a simple rock");
     let room = new Room("Test Room", "A test room");
     let player = new Player("player", room);
@@ -54,11 +49,9 @@ describe ('Item', function () {
     expect(player.items.length).to.equal(1);
 
     expect(player.getItemByName("rock")).to.equal(item);
-
   });
 
-
-  it('can be dropped into a room by a player', function () {
+  it("can be dropped into a room by a player", function () {
     let item = new Item("rock", "just a simple rock");
     let room = new Room("Test Room", "A test room");
     let player = new Player("player", room);
@@ -73,26 +66,18 @@ describe ('Item', function () {
     expect(player.items.length).to.equal(0);
 
     expect(room.getItemByName("rock")).to.equal(item);
-
   });
-
-
 });
 
-
-describe ('Food', function () {
-
-
-  it('should have name and description attributes', function () {
+describe("Food", function () {
+  it("should have name and description attributes", function () {
     let food = new Food("sandwich", "a delicious sandwich");
 
     expect(food.name).to.equal("sandwich");
     expect(food.description).to.equal("a delicious sandwich");
-
   });
 
-
-  it('should be an instance of Item and Food', function () {
+  it("should be an instance of Item and Food", function () {
     let food = new Food("sandwich", "a delicious sandwich");
     let item = new Item("rock", "just a simple rock");
 
@@ -103,8 +88,7 @@ describe ('Food', function () {
     expect(item instanceof Food).to.be.false;
   });
 
-
-  it('can be eaten by a player', function () {
+  it("can be eaten by a player", function () {
     let food = new Food("sandwich", "a delicious sandwich");
     let room = new Room("Test Room", "A test room");
     let player = new Player("player", room);
@@ -116,11 +100,9 @@ describe ('Food', function () {
     player.eatItem("sandwich");
 
     expect(player.items.length).to.equal(0);
-
   });
 
-
-  it('cannot be eaten by a player if not food', function () {
+  it("cannot be eaten by a player if not food", function () {
     let item = new Item("rock", "just a simple rock");
     let room = new Room("Test Room", "A test room");
     let player = new Player("player", room);
@@ -133,9 +115,4 @@ describe ('Food', function () {
 
     expect(player.items.length).to.equal(1);
   });
-
-
-
-
 });
-

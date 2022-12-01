@@ -5,10 +5,11 @@ class Character {
   public health = 100;
   public strength = 10;
   public items: Item[] = [];
-  constructor(public name: string, 
-              public description: string, 
-              public currentRoom: Room | null) {
-  }
+  constructor(
+    public name: string,
+    public description: string,
+    public currentRoom: Room | null
+  ) {}
 
   applyDamage(amount: number) {
     this.health -= amount;
@@ -16,11 +17,11 @@ class Character {
 
   die() {
     //drop all held items
-    if (this.items.length > 0 && this.currentRoom) { 
+    if (this.items.length > 0 && this.currentRoom) {
       this.currentRoom.items = this.items;
       this.items = []; //make sure this is actually ok
     }
-    this.currentRoom = null; 
+    this.currentRoom = null;
   }
 }
 

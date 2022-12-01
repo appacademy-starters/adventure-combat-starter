@@ -6,8 +6,8 @@ import { Player } from "./player";
 
 class World {
   static rooms: Record<number, Room> = {};
-  static enemies:  Enemy[] = [];
-  
+  static enemies: Enemy[] = [];
+
   static setPlayer(player: Player) {
     for (let i = 0; i < World.enemies.length; i++) {
       if (World.enemies[i]) {
@@ -37,7 +37,7 @@ class World {
   } 
   and use these new interfaces as the type for worldData
   */
-    
+
     const roomList = worldData.rooms; //array of room objects with id, name, description, exits
     const itemList = worldData.items;
     const enemyList = worldData.enemies;
@@ -48,7 +48,7 @@ class World {
       let roomData = roomList[i];
       let newRoom = new Room(roomData.name, roomData.description);
 
-      World.rooms[roomData.id] = newRoom; 
+      World.rooms[roomData.id] = newRoom;
     }
 
     // Connect rooms by ID
@@ -56,7 +56,7 @@ class World {
     for (let i = 0; i < roomList.length; i++) {
       let roomID = roomList[i].id;
       let roomConnections = roomList[i].exits;
-      //roomConnections is an object that looks like this: 
+      //roomConnections is an object that looks like this:
       //{ n: 2, e: 3, w: 4, s: 5 }
 
       for (const direction in roomConnections) {
