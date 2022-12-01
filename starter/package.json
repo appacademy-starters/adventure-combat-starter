@@ -11,7 +11,7 @@
     "start:dev": "ts-node ./game.ts",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "mocha build/test/*.js"
+    "test": "mocha build/test/*-spec.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.9",
+    "@types/source-map-support": "^0.5.6",
     "chai": "^4.3.4",
     "mocha": "^10.1.0",
     "source-map-support": "^0.5.21",

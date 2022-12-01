@@ -1,3 +1,5 @@
+import "./test-common";
+
 import { expect } from "chai";
 
 import { Player } from "../class/player.js";

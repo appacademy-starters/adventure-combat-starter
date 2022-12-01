@@ -1,3 +1,5 @@
+import "./test-common";
+
 import { expect } from "chai";
 import { Character } from "../class/character";
 import { Enemy } from "../class/enemy";
@@ -20,7 +22,7 @@ describe("Player", function () {
 
   it("should have name and description attributes", function () {
     expect(player.name).to.equal("Player");
-    expect(player.description).to.equal("the main character");
+    expect(player.description).to.equal("main character");
   });
 
   it("should inherit from Character class", function () {

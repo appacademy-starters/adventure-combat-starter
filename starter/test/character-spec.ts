@@ -1,3 +1,5 @@
+import "./test-common";
+
 import { expect } from "chai";
 import { Character } from "../class/character";
 import { Enemy } from "../class/enemy";
