@@ -2,7 +2,7 @@ import { World } from "./world";
 import { Item } from "./item.js";
 
 class Room {
-  public exits: Record<string, number> = {}; ///exit is an object with string keys and num values
+  public exits: Record<string, Room> = {};
   public items: Item[] = [];
   constructor(public name: string, public description: string) {}
 
@@ -39,7 +39,7 @@ class Room {
     return `Exits: ${this.getExits().join(", ")}`;
   }
 
-  connectRooms(direction: string, connectingRoom: number) {
+  connectRooms(direction: string, connectingRoom: Room) {
     // Check if the direction and connecting room are valid
     if (["n", "s", "e", "w"].indexOf(direction) < 0 || !connectingRoom) {
       throw new Error("Error: Invalid room connection");
@@ -52,7 +52,7 @@ class Room {
     return this.exits[direction]; //change this to return Room object?
   }
 
-  getItemByNameRoom(itemName: string) {
+  getItemByName(itemName: string) {
     let returnItem = this.items.find((obj) => obj.name === itemName);
     if (returnItem) {
       // if items arr contains obj ItemName

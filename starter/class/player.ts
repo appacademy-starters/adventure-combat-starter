@@ -6,6 +6,7 @@ import { newArrWithoutItem } from "./array-utilities.js";
 import { World } from "./world";
 
 class Player extends Character {
+  public override items: Item[] = [];
   constructor(name: string, startingRoom: Room) {
     super(name, "main character", startingRoom);
   }
@@ -40,7 +41,7 @@ class Player extends Character {
   takeItem(itemName: string) {
     if (this.currentRoom) {
       // if currentRoom is not null
-      let itemObj = this.currentRoom.getItemByNameRoom(itemName);
+      let itemObj = this.currentRoom.getItemByName(itemName);
       if (itemObj) {
         //if item exists in this current room
         this.currentRoom.items = newArrWithoutItem(
@@ -59,7 +60,7 @@ class Player extends Character {
   }
 
   dropItem(itemName: string) {
-    let dropItem = this.getItemByNamePlayer(itemName);
+    let dropItem = this.getItemByName(itemName);
     if (dropItem) {
       this.items = newArrWithoutItem(this.items, dropItem);
       this.currentRoom?.items.push(dropItem);
@@ -68,7 +69,7 @@ class Player extends Character {
   }
 
   eatItem(itemName: string) {
-    let foodObj = this.getItemByNamePlayer(itemName);
+    let foodObj = this.getItemByName(itemName);
     if (foodObj) {
       if (foodObj instanceof Food) {
         //set items to a new array with that item removed
@@ -80,7 +81,7 @@ class Player extends Character {
     }
   }
 
-  getItemByNamePlayer(itemName: string) {
+  getItemByName(itemName: string) {
     let itemFromInv = this.items.find((el) => el.name === itemName);
     if (itemFromInv) {
       return itemFromInv;

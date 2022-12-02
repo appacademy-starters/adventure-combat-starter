@@ -11,7 +11,7 @@
     "start:dev": "ts-node ./game.ts",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "mocha build/test/*-spec.js"
+    "test": "mocha ./build/test/*.js"
   },
   "author": "",
   "license": "ISC",
