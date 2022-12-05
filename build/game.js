@@ -33,7 +33,7 @@ function startGame() {
         console.log(`Hello, ${name}!\n`);
         // Create the world and player
         world_1.World.loadWorld(world_data_1.default);
-        player = new player_1.Player(name, "main character", world_1.World.rooms[1]);
+        player = new player_1.Player(name, world_1.World.rooms[1]);
         world_1.World.setPlayer(player);
         // Show commands
         printHelp();

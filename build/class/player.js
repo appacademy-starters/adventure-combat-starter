@@ -5,10 +5,9 @@ const character_1 = require("./character");
 const food_1 = require("./food");
 const array_utilities_js_1 = require("./array-utilities.js");
 class Player extends character_1.Character {
-    constructor(name, description, startingRoom) {
-        super(name, description, startingRoom);
+    constructor(name, startingRoom) {
+        super(name, "main character", startingRoom);
         this.items = [];
-        this.description = "main character";
         this.currentRoom = startingRoom;
     }
     move(direction) {
