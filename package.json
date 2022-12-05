@@ -1,0 +1,28 @@
+{
+  "name": "adventure-combat",
+  "version": "1.0.0",
+  "description": "Welcome to App Academy Adventure! For this project, you will add features to a text adventure using OOP principles.",
+  "main": "game.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node ./build/game.js",
+    "start:dev": "ts-node ./game.ts",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "mocha ./build/test/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.9",
+    "@types/source-map-support": "^0.5.6",
+    "chai": "^4.3.4",
+    "mocha": "^10.1.0",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.1"
+  }
+}

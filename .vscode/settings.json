@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true,
+  "mochaExplorer.files": "starter/test/**/*.ts",
+  "mochaExplorer.require": "ts-node/register"
+}
