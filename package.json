@@ -12,7 +12,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "build:clean": "rm -rf build",
-    "test": "mocha ./build/test/*.js"
+    "test": "mocha ./build/test/*-spec.js"
   },
   "author": "",
   "license": "ISC",

@@ -7,6 +7,7 @@ import { Food } from "../class/food";
 import { Item } from "../class/item";
 import { Player } from "../class/player";
 import { Room } from "../class/room";
+import { World } from "../class/world";
 
 describe("Player", function () {
   let player: Player;
@@ -18,6 +19,7 @@ describe("Player", function () {
     item = new Item("rock", "just a simple rock");
     player = new Player("Player", room);
     player.items.push(item);
+    World.enemies = [];
   });
 
   it("should have name and description attributes", function () {
@@ -110,6 +112,7 @@ describe("Player", function () {
 
   it("should be able to attack an enemy in the room", function () {
     let enemy = new Enemy("Ogre", "A big, mean, ugly, nasty, green dude", room);
+    World.enemies.push(enemy);
     let beforeHealth = enemy.health;
     player.hit(enemy.name);
     expect(enemy.health).to.be.equal(beforeHealth - 10);
@@ -125,9 +128,10 @@ describe("Player", function () {
       "A big, mean, ugly, nasty, green dude",
       otherRoom
     );
+    World.enemies.push(enemy);
     let beforeHealth = enemy.health;
     player.hit(enemy.name);
-    expect(enemy.health).to.be.equal(beforeHealth - 10);
+    expect(enemy.health).to.be.equal(beforeHealth);
     // Alternatively
     // expect(enemy.health).to.be.lessThan(beforeHealth);
   });
