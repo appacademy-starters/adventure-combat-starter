@@ -1,6 +1,7 @@
 import { Character } from "./character";
 import { Player } from "./player";
 import { Room } from "./room.js";
+import { newArrWithoutItem } from "./array-utilities.js";
 import { World } from "./world";
 
 class Enemy extends Character {
@@ -32,7 +33,14 @@ class Enemy extends Character {
   }
 
   takeSandwich() {
-    // Fill this in
+    if (this.player && this.player.currentRoom === this.currentRoom) {
+      let playersSandwich = this.player.items.find((el) => el.name === "sandwich");
+      if (playersSandwich) {
+        this.player.items = newArrWithoutItem(
+          this.player.items, playersSandwich);
+        console.log("The enemy took your sandwich!");
+      }
+    }
   }
 
   // Print the alert only if player is standing in the same room

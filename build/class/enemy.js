@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Enemy = void 0;
 const character_1 = require("./character");
+const array_utilities_js_1 = require("./array-utilities.js");
 class Enemy extends character_1.Character {
     constructor(name, description, currentRoom) {
         super(name, description, currentRoom); //health and strength should autmatically be inherited?
@@ -23,7 +24,13 @@ class Enemy extends character_1.Character {
         this.cooldown += 3000;
     }
     takeSandwich() {
-        // Fill this in
+        if (this.player && this.player.currentRoom === this.currentRoom) {
+            let playersSandwich = this.player.items.find((el) => el.name === "sandwich");
+            if (playersSandwich) {
+                this.player.items = (0, array_utilities_js_1.newArrWithoutItem)(this.player.items, playersSandwich);
+                console.log("The enemy took your sandwich!");
+            }
+        }
     }
     // Print the alert only if player is standing in the same room
     alert(message) {

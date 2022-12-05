@@ -2,6 +2,7 @@ import { Character } from "./character";
 import { Item } from "../class/item";
 import { Food } from "./food";
 import { Room } from "./room";
+import { Enemy } from "./enemy";
 import { newArrWithoutItem } from "./array-utilities.js";
 
 class Player extends Character {
@@ -91,8 +92,9 @@ class Player extends Character {
   }
 
   hit(name: string) {
-    //how to reference the enemy obj by name?
-    let enemyTarget = this.currentRoom?.getEnemyByName(name);
+    
+    let enemyTarget: Enemy | undefined = this.currentRoom?.getEnemyByName(name);
+
     if (enemyTarget) {
       //if name refers to an enemy in player's current room
       enemyTarget.applyDamage(10);

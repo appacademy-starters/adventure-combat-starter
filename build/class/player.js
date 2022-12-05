@@ -83,7 +83,6 @@ class Player extends character_1.Character {
         }
     }
     hit(name) {
-        //how to reference the enemy obj by name?
         let enemyTarget = this.currentRoom?.getEnemyByName(name);
         if (enemyTarget) {
             //if name refers to an enemy in player's current room
