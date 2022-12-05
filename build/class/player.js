@@ -5,9 +5,10 @@ const character_1 = require("./character");
 const food_1 = require("./food");
 const array_utilities_js_1 = require("./array-utilities.js");
 class Player extends character_1.Character {
-    constructor(name, startingRoom) {
-        super(name, "main character", startingRoom);
+    constructor(name, description, startingRoom) {
+        super(name, description, startingRoom);
         this.items = [];
+        this.description = "main character";
         this.currentRoom = startingRoom;
     }
     move(direction) {
@@ -84,10 +85,15 @@ class Player extends character_1.Character {
     }
     hit(name) {
         let enemyTarget = this.currentRoom?.getEnemyByName(name);
+        //console.log(enemyTarget?.name);
         if (enemyTarget) {
             //if name refers to an enemy in player's current room
             enemyTarget.applyDamage(10);
             enemyTarget.attackTarget = this;
+            console.log(`You have hit ${name}. ${name}'s health is now ${enemyTarget.health}.`);
+        }
+        else {
+            console.log(`You cannot hit ${name}.`);
         }
     }
     die() {

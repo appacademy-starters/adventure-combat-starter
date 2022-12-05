@@ -7,8 +7,9 @@ import { newArrWithoutItem } from "./array-utilities.js";
 
 class Player extends Character {
   public override items: Item[] = [];
-  constructor(name: string, startingRoom: Room) {
-    super(name, "main character", startingRoom);
+  constructor(name: string, description: string, startingRoom: Room) {
+    super(name, description, startingRoom);
+    this.description = "main character";
     this.currentRoom = startingRoom;
   }
 
@@ -92,13 +93,16 @@ class Player extends Character {
   }
 
   hit(name: string) {
-    
     let enemyTarget: Enemy | undefined = this.currentRoom?.getEnemyByName(name);
+    //console.log(enemyTarget?.name);
 
     if (enemyTarget) {
       //if name refers to an enemy in player's current room
       enemyTarget.applyDamage(10);
       enemyTarget.attackTarget = this;
+      console.log(`You have hit ${name}. ${name}'s health is now ${enemyTarget.health}.`);
+    } else {
+      console.log(`You cannot hit ${name}.`);
     }
   }
 

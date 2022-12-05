@@ -11,6 +11,7 @@
     "start:dev": "ts-node ./game.ts",
     "build": "tsc",
     "build:watch": "tsc --watch",
+    "build:clean": "rm -rf build",
     "test": "mocha ./build/test/*.js"
   },
   "author": "",

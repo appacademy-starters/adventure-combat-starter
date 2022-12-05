@@ -25,6 +25,7 @@ class World {
   }
 
   static getEnemiesInRoom(room: Room) {
+    //currently returning an empty array
     return World.enemies.filter((enemy) => enemy.currentRoom === room);
   }
 
@@ -56,8 +57,6 @@ class World {
     for (let i = 0; i < roomList.length; i++) {
       let roomID = roomList[i].id;
       let roomConnections = roomList[i].exits;
-      //roomConnections is an object that looks like this:
-      //{ n: 2, e: 3, w: 4, s: 5 }
 
       for (const direction in roomConnections) {
         let connectedRoomID: number = roomConnections[direction];
@@ -84,7 +83,7 @@ class World {
     // Instantiate enemies
     for (let i = 0; i < enemyList.length; i++) {
       let enemyData = enemyList[i];
-      let enemyRoom = World.rooms[enemyData.currentRoom];
+      let enemyRoom = World.rooms[enemyData.room];
       let newEnemy = new Enemy(
         enemyData.name,
         enemyData.description,

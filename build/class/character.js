@@ -12,7 +12,6 @@ class Character {
     }
     applyDamage(amount) {
         this.health -= amount;
-        console.log(this.health);
         if (this.health <= 0) {
             this.die();
         }

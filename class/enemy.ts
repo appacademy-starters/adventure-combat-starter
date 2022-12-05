@@ -2,7 +2,6 @@ import { Character } from "./character";
 import { Player } from "./player";
 import { Room } from "./room.js";
 import { newArrWithoutItem } from "./array-utilities.js";
-import { World } from "./world";
 
 class Enemy extends Character {
   public cooldown = 3000;
@@ -67,6 +66,7 @@ class Enemy extends Character {
     //The goblin should attack the player on sight once hit
     if (this.attackTarget) {
       this.attackTarget.applyDamage(10);
+      console.log(`You have been attacked by ${this}. Your health is now ${this.attackTarget.health}.`);
   }
   this.cooldown += 3000;
   }
