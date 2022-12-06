@@ -29,6 +29,7 @@ class Enemy extends character_1.Character {
             let playersSandwich = this.player.items.find((el) => el.name === "sandwich");
             if (playersSandwich) {
                 this.player.items = (0, array_utilities_js_1.newArrWithoutItem)(this.player.items, playersSandwich);
+                this.items.push(playersSandwich);
                 console.log("The enemy took your sandwich!");
             }
         }
@@ -38,16 +39,6 @@ class Enemy extends character_1.Character {
         if (this.player && this.player.currentRoom === this.currentRoom) {
             console.log(message);
         }
-    }
-    rest() {
-        // Wait until cooldown expires, then act
-        //Take a look at the Enemy.rest() setTimeout loop.
-        //^There is a bug in this code. Can you find it?
-        const resetCooldown = () => {
-            this.cooldown = 0;
-            this.act();
-        };
-        setTimeout(resetCooldown, this.cooldown);
     }
     attack() {
         // Implement the ability for the goblin to attack the player
@@ -62,6 +53,16 @@ class Enemy extends character_1.Character {
     applyDamage(amount) {
         super.applyDamage(amount);
     }
+    rest() {
+        // Wait until cooldown expires, then act
+        //Take a look at the Enemy.rest() setTimeout loop.
+        //^There is a bug in this code. Can you find it?
+        const resetCooldown = () => {
+            this.cooldown = 0;
+            this.act();
+        };
+        setTimeout(resetCooldown, this.cooldown);
+    }
     act() {
         if (this.health <= 0) {
             // Dead, do nothing;
@@ -71,7 +72,7 @@ class Enemy extends character_1.Character {
         }
         else {
             this.scratchNose();
-            //add randomMove here??
+            this.randomMove();
             this.rest();
         }
         // Fill this in
@@ -79,6 +80,10 @@ class Enemy extends character_1.Character {
     scratchNose() {
         this.cooldown += 1000;
         this.alert(`${this.name} scratches its nose`);
+    }
+    die() {
+        super.die();
+        console.log(`${this.name} is dead!`);
     }
 }
 exports.Enemy = Enemy;

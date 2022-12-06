@@ -1,5 +1,6 @@
 import { Room } from "./room.js";
 import { Item } from "./item.js";
+//import { Enemy } from "./enemy.js";
 
 class Character {
   public health = 100;
@@ -26,7 +27,6 @@ class Character {
     }
     
     this.currentRoom = null;
-    console.log(`${this.name} is dead!`);
   }
 }
 

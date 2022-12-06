@@ -97,8 +97,9 @@ class Player extends Character {
     if (enemyTarget) {
       //if name refers to an enemy in player's current room
       enemyTarget.applyDamage(10);
-      enemyTarget.attackTarget = this;
       console.log(`You have hit ${enemyTarget.name}. ${enemyTarget.name}'s health is now ${enemyTarget.health}.`);
+      enemyTarget.attackTarget = this;
+      enemyTarget.attack();
     } else {
       console.log(`You cannot hit ${name}.`);
     }

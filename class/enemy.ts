@@ -38,6 +38,7 @@ class Enemy extends Character {
       if (playersSandwich) {
         this.player.items = newArrWithoutItem(
           this.player.items, playersSandwich);
+          this.items.push(playersSandwich);
         console.log("The enemy took your sandwich!");
       }
     }
@@ -48,17 +49,6 @@ class Enemy extends Character {
     if (this.player && this.player.currentRoom === this.currentRoom) {
       console.log(message);
     }
-  }
-
-  rest() {
-    // Wait until cooldown expires, then act
-    //Take a look at the Enemy.rest() setTimeout loop.
-    //^There is a bug in this code. Can you find it?
-    const resetCooldown = () => {
-      this.cooldown = 0;
-      this.act();
-    };
-    setTimeout(resetCooldown, this.cooldown);
   }
 
   attack() {
@@ -76,6 +66,17 @@ class Enemy extends Character {
     super.applyDamage(amount);
   }
 
+  rest() {
+    // Wait until cooldown expires, then act
+    //Take a look at the Enemy.rest() setTimeout loop.
+    //^There is a bug in this code. Can you find it?
+    const resetCooldown = () => {
+      this.cooldown = 0;
+      this.act();
+    };
+    setTimeout(resetCooldown, this.cooldown);
+  }
+
   act() {
     if (this.health <= 0) {
       // Dead, do nothing;
@@ -83,7 +84,7 @@ class Enemy extends Character {
       this.rest();
     } else {
       this.scratchNose();
-      //add randomMove here??
+      this.randomMove();
       this.rest();
     }
 
@@ -94,6 +95,11 @@ class Enemy extends Character {
     this.cooldown += 1000;
 
     this.alert(`${this.name} scratches its nose`);
+  }
+
+  override die() {
+    super.die();
+    console.log(`${this.name} is dead!`);
   }
 }
 
