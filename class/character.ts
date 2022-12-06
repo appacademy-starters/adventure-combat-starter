@@ -26,7 +26,7 @@ class Character {
     }
     
     this.currentRoom = null;
-    console.log("You are dead!");
+    console.log(`${this.name} is dead!`);
   }
 }
 

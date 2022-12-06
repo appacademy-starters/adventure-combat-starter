@@ -25,7 +25,6 @@ class World {
   }
 
   static getEnemiesInRoom(room: Room) {
-    //currently returning an empty array
     return World.enemies.filter((enemy) => enemy.currentRoom === room);
   }
 

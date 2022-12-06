@@ -20,6 +20,7 @@ function printHelp() {
   console.log("  Type 'q' to quit");
   console.log("  Type 'l' to look around");
   console.log("  Type 'i' to check your inventory");
+  console.log("  Type 'x' to check your health");
   console.log("  Type 'take <item>' to take an item");
   console.log("  Type 'drop <item>' to drop an item");
   console.log("  Type 'eat <item>' to eat a food item");
@@ -37,7 +38,7 @@ function startGame() {
 
     // Create the world and player
     World.loadWorld(worldData);
-    player = new Player(name, "main character", World.rooms[1]);
+    player = new Player(name, World.rooms[1]);
     World.setPlayer(player);
 
     // Show commands
@@ -65,6 +66,8 @@ function processCommand() {
       player.currentRoom.printRoom();
     } else if (cmd === "i") {
       player.printInventory();
+    } else if (cmd === "x") {
+      console.log(`Your health is at ${player.health}`);
     } else if (["n", "s", "e", "w"].indexOf(cmd) >= 0) {
       let direction = cmd;
       player.move(direction);

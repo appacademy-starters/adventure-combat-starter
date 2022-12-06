@@ -55,7 +55,7 @@ class Enemy extends character_1.Character {
         //The goblin should attack the player on sight once hit
         if (this.attackTarget) {
             this.attackTarget.applyDamage(10);
-            console.log(`You have been attacked by ${this}. Your health is now ${this.attackTarget.health}.`);
+            console.log(`You have been attacked by ${this.name}. Your health is now ${this.attackTarget.health}.`);
         }
         this.cooldown += 3000;
     }
