@@ -5,9 +5,10 @@ const character_1 = require("./character");
 const array_utilities_js_1 = require("./array-utilities.js");
 class Enemy extends character_1.Character {
     constructor(name, description, currentRoom) {
-        super(name, description, currentRoom); //health and strength should autmatically be inherited?
+        super(name, description, currentRoom);
         this.cooldown = 3000;
         this.attackTarget = null;
+        //health and strength are autmatically inherited
     }
     setPlayer(player) {
         this.player = player;
@@ -54,7 +55,7 @@ class Enemy extends character_1.Character {
         //The goblin should attack the player on sight once hit
         if (this.attackTarget) {
             this.attackTarget.applyDamage(10);
-            console.log(`You have been attacked by ${this.name}. Your health is now ${this.attackTarget.health}.`);
+            console.log(`You have been attacked by ${this}. Your health is now ${this.attackTarget.health}.`);
         }
         this.cooldown += 3000;
     }

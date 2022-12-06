@@ -31,11 +31,3 @@ class Character {
 }
 
  export { Character };
-
-/*
-let a = new Character("A", "character A", 1);
-let rock = new Item("rock", "simple rock");
-
-a.items.push(rock);
-
-a.applyDamage(100); */

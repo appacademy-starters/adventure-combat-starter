@@ -7,9 +7,8 @@ import { newArrWithoutItem } from "./array-utilities.js";
 
 class Player extends Character {
   public override items: Item[] = [];
-  constructor(name: string, description: string, startingRoom: Room) {
-    super(name, description, startingRoom);
-    this.description = "main character";
+  constructor(name: string, startingRoom: Room) {
+    super(name, "main character", startingRoom);
     this.currentRoom = startingRoom;
   }
 

@@ -8,7 +8,8 @@ class Enemy extends Character {
   public player?: Player;
   public attackTarget: Player | null = null;
   constructor(name: string, description: string, currentRoom: Room) {
-    super(name, description, currentRoom); //health and strength should autmatically be inherited?
+    super(name, description, currentRoom); 
+    //health and strength are autmatically inherited
   }
 
   setPlayer(player: Player) {
